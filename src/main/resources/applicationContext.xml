@@ -25,9 +25,9 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-4.3.xsd" >
 
-	   <bean id="myQueue" class="com.durianlollipop.Queue.MyQueue"></bean>
-	   <bean id="httpClient" class="com.durianlollipop.crawler.HttpClient">
-	   	<property name="myQueue" ref="myQueue"></property>
-	   </bean>
 
+	   <context:component-scan base-package="com.durianlollipop"></context:component-scan>
+	   <bean id="myQueue" class="com.durianlollipop.Queue.MyQueue"></bean>
+<!-- 	   <bean id="httpClient" class="com.durianlollipop.crawler.HttpClient"></bean>
+ -->
 </beans>

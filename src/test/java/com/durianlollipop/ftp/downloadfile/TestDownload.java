@@ -12,7 +12,7 @@ public class TestDownload {
 	
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		HttpClient Http_authorization = context.getBean(HttpClient.class);
+		HttpClient httpClient = context.getBean(HttpClient.class);
 		Scanner sc = new Scanner(System.in);
 		System.out.println("请输入网址:");
 		String url = sc.nextLine();
@@ -21,8 +21,7 @@ public class TestDownload {
 		System.out.println("请输入密码:");
 		String password = sc.nextLine();
 		String authorization = BaseUtil.getAuthorization(username, password);
-		System.out.println(authorization);
-		new HttpClient().getPage(url, authorization);
+		httpClient.getPage(url, authorization);
 	}
 	
 }

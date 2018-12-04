@@ -37,5 +37,9 @@ public class Page {
 	public String toString() {
 		return "Page [Requeststatus=" + Requeststatus + ", ContentType=" + ContentType + ", urlList=" + urlList + "]";
 	}
+	
+	public String getType() {
+		return this.ContentType.split(";")[0];
+	}
 
 }

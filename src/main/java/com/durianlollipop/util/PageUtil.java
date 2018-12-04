@@ -13,12 +13,28 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.durianlollipop.Queue.MyQueue;
 import com.durianlollipop.pojo.Page;
 
+/**
+ * 页面工具类
+ * @author 15914
+ *
+ */
 public class PageUtil {
 	
 	public PageUtil() {}
 	
+	private static MyQueue myQueue;
+	
+	/**
+	 * 封装页面信息
+	 * 状态值
+	 * 包含的url
+	 * 页面类型content-type
+	 * @param response
+	 * @return Page对象
+	 */
 	public static Page getPageInfo(CloseableHttpResponse response) {
 		Page page = new Page();
 		
@@ -27,25 +43,27 @@ public class PageUtil {
 		
 		page.setRequeststatus(requeststatus);
 		page.setContentType(contentType);
-		List<String> urlList = new ArrayList<>();
-		HttpEntity entity = response.getEntity();
 		try {
-			String html = EntityUtils.toString(entity);
-			Document document = Jsoup.parse(html);
-			Element body = document.body();
-			Elements label_a = body.select("a");
-			for (Element a : label_a) {
-				String url = a.attr("href");
-				if(url.equals("../")) {
-					continue;
-				}
-				urlList.add(url);
+			if(page.getType().equals("text/html")) {
+				List<String> urlList = new ArrayList<>();
+				HttpEntity entity = response.getEntity();
+					String html = EntityUtils.toString(entity);
+					Document document = Jsoup.parse(html);
+					Element body = document.body();
+					Elements label_a = body.select("a");
+					for (Element a : label_a) {
+						String url = a.attr("href");
+						if(url.equals("../")) {
+							continue;
+						}
+						urlList.add(url);
+					}
+					page.setUrlList(urlList);
 			}
-			page.setUrlList(urlList);
 		} catch (ParseException | IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(page);
+		
 		return page;
 	}
 }
