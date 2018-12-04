@@ -1,17 +1,9 @@
 package com.durianlollipop.Queue;
 
 import java.util.LinkedList;
-
-import org.springframework.stereotype.Component;
-
 import com.durianlollipop.pojo.Page;
 
-@Component
 public class MyQueue {
-	
-	public MyQueue() {
-		System.out.println("MyQueue");
-	}
 	
 	private LinkedList<Page> pageList = new LinkedList<>();
 	

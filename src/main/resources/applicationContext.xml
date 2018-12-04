@@ -28,6 +28,7 @@
 
 	   <context:component-scan base-package="com.durianlollipop"></context:component-scan>
 	   <bean id="myQueue" class="com.durianlollipop.Queue.MyQueue"></bean>
+	   <bean id="urlQueue" class="com.durianlollipop.Queue.UrlQueue"></bean>
 <!-- 	   <bean id="httpClient" class="com.durianlollipop.crawler.HttpClient"></bean>
  -->
 </beans>
